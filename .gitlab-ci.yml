@@ -1,3 +1,5 @@
+image: python:3.11
+
 stages:
 - before_script
 - linting
@@ -10,7 +12,7 @@ before_script:
     - pip install flake8
 
 flake8:
-stage: linting
-image: registry.gitlab.com/pipeline-components/flake8:latest
-script:
-- flake8 --verbose
+    stage: linting
+    image: registry.gitlab.com/pipeline-components/flake8:latest
+    script:
+    - flake8 --verbose
