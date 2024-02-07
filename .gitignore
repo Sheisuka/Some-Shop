@@ -1,5 +1,7 @@
 venv
-*cache*
 .env
 *db*
 *local*
+.vscode/
+.idea/
+__pycache__/
