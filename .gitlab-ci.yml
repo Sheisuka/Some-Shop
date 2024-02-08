@@ -8,12 +8,15 @@ before_script:
     - python -m pip install --upgrade pip
     - pip install black
     - pip install flake8
+    - pip install flake8-quotes
+    - pip install pep8-naming
+    - pip install flake8-import-order
 
 flake8:
     stage: linting
     image: registry.gitlab.com/pipeline-components/flake8:latest
     script:
-    - flake8 --verbose lyceum
+    - flake8 --verbose --inline-quotes '"' --pep8-naming --import-order-style lyceum
 
 black:
     stage: linting
