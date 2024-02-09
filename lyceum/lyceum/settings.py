@@ -3,16 +3,20 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from utilities.config import get_env_var
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "../.env")
 
-SECRET_KEY = environ["DJANGO_SECRET_KEY"]
+SECRET_KEY = get_env_var("DJANGO_SECRET_KEY")
 
-DEBUG = environ["DJANGO_DEBUG"]
+debug_string = get_env_var("DJANGO_DEBUG")
+DEBUG = True if debug_string.lower() not in ("", "false") else False
 
-ALLOWED_HOSTS = []
+hosts_string = environ.get("DJANGO_ALLOWED_HOSTS")
+ALLOWED_HOSTS = hosts_string.split(",") if hosts_string != "" else []
 
 
 INSTALLED_APPS = [
