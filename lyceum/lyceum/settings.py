@@ -2,7 +2,6 @@ from os import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
-
 from utilities.config import get_env_var
 
 
@@ -78,13 +77,16 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
     {
-        "NAME": ("django.contrib.auth." "password_validation.MinimumLengthValidator"),
+        "NAME": ("django.contrib.auth."
+                 "password_validation.MinimumLengthValidator"),
     },
     {
-        "NAME": ("django.contrib.auth." "password_validation.CommonPasswordValidator"),
+        "NAME": ("django.contrib.auth."
+                 "password_validation.CommonPasswordValidator"),
     },
     {
-        "NAME": ("django.contrib.auth." "password_validation.NumericPasswordValidator"),
+        "NAME": ("django.contrib.auth."
+                 "password_validation.NumericPasswordValidator"),
     },
 ]
 
