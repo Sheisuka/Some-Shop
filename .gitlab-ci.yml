@@ -22,4 +22,4 @@ black:
     stage: linting
     image: registry.gitlab.com/pipeline-components/black:latest
     script:
-    - black --check --verbose -- lyceum
+    - black --check --line-length 79 --verbose -- lyceum
