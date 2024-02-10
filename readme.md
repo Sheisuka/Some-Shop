@@ -5,9 +5,6 @@
   
 ## Конфигурация  
 mv .env.example .env  
-echo 'DJANGO_SECRET_KEY=<YOUR_KEY>' > .env  
-echo 'DJANGO_DEBUG=<Flag>' >> .env  
-echo 'DJANGO_ALLOWED_HOSTS=<host1,host2,...>' >> .env
   
 ## Подготовка окружения
 python3 -m venv venv  
