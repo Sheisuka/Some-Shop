@@ -8,11 +8,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "../.env")
 
-SECRET_KEY =  environ.get("DJANGO_SECRET_KEY", "django-secret-key")
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "django-secret-key")
 
 DEBUG = environ.get("DJANGO_DEBUG", "true").lower() in ("1", "true", "yes")
 
-ALLOWED_HOSTS = environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",")
+ALLOWED_HOSTS = environ.get(
+    "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]"
+).split(",")
 
 
 INSTALLED_APPS = [
