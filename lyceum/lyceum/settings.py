@@ -2,20 +2,17 @@ from os import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
-from utilities.config import get_env_var
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "../.env")
 
-SECRET_KEY = get_env_var("DJANGO_SECRET_KEY")
+SECRET_KEY =  environ.get("DJANGO_SECRET_KEY", "django-secret-key")
 
-debug_string = get_env_var("DJANGO_DEBUG")
-DEBUG = True if debug_string.lower() not in ("", "false") else False
+DEBUG = environ.get("DJANGO_DEBUG", "true").lower() in ("1", "true", "yes")
 
-hosts_string = environ.get("DJANGO_ALLOWED_HOSTS")
-ALLOWED_HOSTS = hosts_string.split(",") if hosts_string != "" else []
+ALLOWED_HOSTS = environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",")
 
 
 INSTALLED_APPS = [
