@@ -3,6 +3,7 @@ image: python:3.11
 stages:
 - before_script
 - linting
+- tests
 
 before_script:
     - python -m pip install --upgrade pip
@@ -23,3 +24,8 @@ black:
     image: registry.gitlab.com/pipeline-components/black:latest
     script:
     - black --check --line-length 79 --verbose -- lyceum
+
+django_tests:
+    stage: tests
+    script:
+    - python3 manage.py test
