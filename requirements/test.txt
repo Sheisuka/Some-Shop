@@ -1,7 +1,4 @@
 flake8==7.0.0
 flake8-import-order==0.18.2
 flake8-quotes==3.3.2
-mccabe==0.7.0
 pep8-naming==0.13.3
-pycodestyle==2.11.1
-pyflakes==3.2.0
