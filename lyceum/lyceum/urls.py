@@ -8,7 +8,7 @@ from about.views import description
 
 urlpatterns = [
     path("", home),
-    path("about", description),
+    path("about/", description),
     path("admin/", admin.site.urls),
     path("catalog/", item_list),
     path("catalog/<int:pk>/", item_detail),
