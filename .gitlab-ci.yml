@@ -26,4 +26,5 @@ black:
 django_tests:
     stage: tests
     script:
+    - cd lyceum
     - python3 manage.py test
