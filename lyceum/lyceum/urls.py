@@ -1,7 +1,8 @@
-from about.views import description
-from catalog.views import item_list, item_detail
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+
+from about.views import description
+from catalog.views import item_detail, item_list
 from homepage.views import home
 
 

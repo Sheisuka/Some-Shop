@@ -10,7 +10,7 @@ load_dotenv(
     BASE_DIR / "../.env", override=False
 )  # Env vars have higher priority
 
-SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "django-secret-key")
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "fake-key")
 
 DEBUG = environ.get("DJANGO_DEBUG", "true").lower() in ("1", "true", "yes")
 
