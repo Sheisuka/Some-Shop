@@ -6,24 +6,22 @@ stages:
 - tests
 
 before_script:
-    - python -m pip install --upgrade pip
-    - pip install black
-    - pip install flake8
-    - pip install flake8-quotes
-    - pip install pep8-naming
-    - pip install flake8-import-order
+    - python3 -m pip install --upgrade pip
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip3 install -r requirements/test.txt
 
 flake8:
     stage: linting
     image: registry.gitlab.com/pipeline-components/flake8:latest
     script:
-    - flake8 --verbose --inline-quotes '"' --import-order-style pep8 lyceum
+    - flake8 --exclude venv --verbose --inline-quotes '"' --import-order-style pep8 lyceum
 
 black:
     stage: linting
     image: registry.gitlab.com/pipeline-components/black:latest
     script:
-    - black --check --line-length 79 --verbose -- lyceum
+    - black --exclude venv --check --line-length 79 --verbose -- lyceum
 
 django_tests:
     stage: tests
