@@ -13,4 +13,3 @@ class StaticURLTests(TestCase):
     def test_item_detail_negative_endpoint(self):
         response = Client().get("/catalog/-10")
         self.assertEqual(response.status_code, 404)
-

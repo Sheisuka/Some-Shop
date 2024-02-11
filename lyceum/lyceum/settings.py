@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / "../.env", override=False) # Env vars have higher priority 
+load_dotenv(
+    BASE_DIR / "../.env", override=False
+)  # Env vars have higher priority
 
 SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "django-secret-key")
 
