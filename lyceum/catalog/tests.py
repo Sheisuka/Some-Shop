@@ -52,7 +52,7 @@ class ConverterTests(TestCase):
 
     def test_converter_content(self):
         response = Client().get("/catalog/converter/50/")
-        self.assertEqual(response.content.decode(), "50".encode())
+        self.assertEqual(response.content, "50".encode())
 
     def test_converter_letters_code(self):
         response = Client().get("/catalog/converter/abc/")
