@@ -9,7 +9,7 @@ urlpatterns = [
     path("about/", include("about.urls")),
     path("admin/", admin.site.urls),
     path("catalog/", include("catalog.urls")),
-    path("coffee/", coffee)
+    path("coffee/", coffee),
 ]
 
 urlpatterns += (path("__debug__/", include("debug_toolbar.urls")),)
