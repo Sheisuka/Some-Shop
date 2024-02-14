@@ -8,4 +8,4 @@ class StaticURLTests(TestCase):
 
     def test_description_endpoint_content(self):
         response = Client().get("/about/")
-        self.assertEqual(response.content.decode(), "<body>О проекте</body>")
+        self.assertEqual(response.content, "О проекте".encode())

@@ -9,7 +9,7 @@ class ItemListTests(TestCase):
     def test_item_list_content(self):
         response = Client().get("/catalog/")
         self.assertEqual(
-            response.content.decode(), "<body>Список элементов</body>"
+            response.content, "Список элементов".encode()
         )
 
 
@@ -42,7 +42,7 @@ class ReTests(TestCase):
 
     def test_re_content(self):
         response = Client().get("/catalog/re/100/")
-        self.assertEqual(response.content.decode(), "<body>100</body>")
+        self.assertEqual(response.content, "100".encode())
 
 
 class ConverterTests(TestCase):
@@ -52,7 +52,7 @@ class ConverterTests(TestCase):
 
     def test_converter_content(self):
         response = Client().get("/catalog/converter/50/")
-        self.assertEqual(response.content.decode(), "<body>50</body>")
+        self.assertEqual(response.content.decode(), "50".encode())
 
     def test_converter_letters_code(self):
         response = Client().get("/catalog/converter/abc/")

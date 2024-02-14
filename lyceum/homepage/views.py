@@ -2,10 +2,10 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("<body>Главная</body>")
+    return HttpResponse("Главная")
 
 
 def coffee(request):
-    response = HttpResponse("<body>Я чайник</body>")
+    response = HttpResponse("Я чайник")
     response.status_code = 418
     return response

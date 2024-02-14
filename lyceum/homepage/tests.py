@@ -5,6 +5,10 @@ class StaticURLTests(TestCase):
     def test_homepage_endpoint_code(self):
         response = Client().get("/")
         self.assertEqual(response.status_code, 200)
+    
+    def test_homepage_endpoint_content(self):
+        response = Client().get("/")
+        self.assertEqual(response.content, "Главная".encode())
 
     def test_coffee_endpoint_code(self):
         response = Client().get("/coffee/")
@@ -12,4 +16,4 @@ class StaticURLTests(TestCase):
 
     def test_coffee_endpoint_content(self):
         response = Client().get("/coffee/")
-        self.assertInHTML("Я чайник", response.content.decode())
+        self.assertEqual(response.content, "Я чайник".encode())
