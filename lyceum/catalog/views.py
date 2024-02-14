@@ -10,7 +10,7 @@ def item_detail(request, pk):
 
 
 def re_view(request):
-    return HttpResponse(f"<body>{request.path.split('/')[-2]}</body>")
+    return HttpResponse("<body>{number}</body>".format(number=request.path.split("/")[-2]))
 
 
 def converter_view(request, value):
