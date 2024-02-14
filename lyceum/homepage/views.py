@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from http import HTTPStatus
 
+
 def home(request):
     return HttpResponse("Главная")
 
