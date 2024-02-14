@@ -5,7 +5,7 @@ class StaticURLTests(TestCase):
     def test_homepage_endpoint_code(self):
         response = Client().get("/")
         self.assertEqual(response.status_code, 200)
-    
+
     def test_homepage_endpoint_content(self):
         response = Client().get("/")
         self.assertEqual(response.content, "Главная".encode())

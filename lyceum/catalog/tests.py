@@ -8,9 +8,7 @@ class ItemListTests(TestCase):
 
     def test_item_list_content(self):
         response = Client().get("/catalog/")
-        self.assertEqual(
-            response.content, "Список элементов".encode()
-        )
+        self.assertEqual(response.content, "Список элементов".encode())
 
 
 class ItemDetailTests(TestCase):
