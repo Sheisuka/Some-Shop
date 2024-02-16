@@ -49,6 +49,9 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+if ALLOW_REVERSE:
+    MIDDLEWARE += ["lyceum.middleware.ReverseMiddleware"]
+
 ROOT_URLCONF = "lyceum.urls"
 
 TEMPLATES = [
