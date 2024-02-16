@@ -6,9 +6,8 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(
-    BASE_DIR / "../.env", override=False
-)  # Env vars have higher priority
+# Env vars have higher priority
+load_dotenv(BASE_DIR / "../.env", override=False)
 
 SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "fake-key")
 
@@ -17,6 +16,13 @@ DEBUG = environ.get("DJANGO_DEBUG", "true").lower() in ("1", "true", "yes")
 ALLOWED_HOSTS = environ.get(
     "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]"
 ).split(",")
+
+ALLOW_REVERSE = environ.get("DJANGO_ALLOW_REVERSE", "true").lower() in (
+    "",
+    "1",
+    "true",
+    "yes",
+)
 
 
 INSTALLED_APPS = [
