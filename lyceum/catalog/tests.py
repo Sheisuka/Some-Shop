@@ -19,6 +19,14 @@ class ItemDetailTests(TestCase):
     def test_item_detail_negative_code(self):
         response = self.client.get("/catalog/-10")
         self.assertEqual(response.status_code, 404)
+    
+    def test_item_detail_letters_code(self):
+        response = self.client.get("/catalog/abc")
+        self.assertEqual(response.status_code, 404)
+    
+    def test_item_detail_symbols_code(self):
+        response = self.client.get("/catalog/@-\!/")
+        self.assertEqual(response.status_code, 404)
 
 
 class ReTests(TestCase):
