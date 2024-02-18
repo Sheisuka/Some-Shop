@@ -1,9 +1,9 @@
 [tool.flake8]
 exclude = 'venv'
-count = true
 inline-quotes = '"'
 import-order-style = 'google'
 application-import-names = ['about', 'catalog', 'homepage']
+count = true
 
 [tool.black]
 line-length = 79
