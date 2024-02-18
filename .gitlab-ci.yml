@@ -22,7 +22,7 @@ black:
     stage: linting
     image: registry.gitlab.com/pipeline-components/black:latest
     script:
-    - black --exclude venv --check --line-length 79 --verbose -- lyceum
+    - black --count --exclude venv --check --line-length 79 --verbose -- lyceum
 
 django_tests:
     stage: tests
