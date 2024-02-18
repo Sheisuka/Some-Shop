@@ -8,6 +8,5 @@ def home(request):
 
 
 def coffee(request):
-    response = HttpResponse("Я чайник")
-    response.status_code = HTTPStatus.IM_A_TEAPOT
+    response = HttpResponse("Я чайник", status = HTTPStatus.IM_A_TEAPOT)
     return response
