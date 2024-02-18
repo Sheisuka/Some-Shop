@@ -41,6 +41,10 @@ class ReTests(TestCase):
     def test_re_content(self):
         response = self.client.get("/catalog/re/100/")
         self.assertEqual(response.content, "100".encode())
+    
+    def test_re_symbols_code(self):
+        response = self.client.get("/catalog/re/@-\!/")
+        self.assertEqual(response.status_code, 404)
 
 
 class ConverterTests(TestCase):
@@ -58,4 +62,8 @@ class ConverterTests(TestCase):
 
     def test_converter_negative_code(self):
         response = self.client.get("/catalog/converter/-10/")
+        self.assertEqual(response.status_code, 404)
+    
+    def test_converter_symbols_code(self):
+        response = self.client.get("/catalog/converter/@-\!/")
         self.assertEqual(response.status_code, 404)
