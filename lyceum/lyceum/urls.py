@@ -1,15 +1,14 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-from homepage.views import coffee, home
-
 
 urlpatterns = [
-    path("", home),
     path("about/", include("about.urls")),
     path("admin/", admin.site.urls),
     path("catalog/", include("catalog.urls")),
-    path("coffee/", coffee),
+    path("", include("homepage.urls"))
 ]
 
-urlpatterns += (path("__debug__/", include("debug_toolbar.urls")),)
+if settings.DEBUG:
+    urlpatterns += (path("__debug__/", include("debug_toolbar.urls")),)
