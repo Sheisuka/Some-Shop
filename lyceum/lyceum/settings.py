@@ -1,8 +1,9 @@
-from . import utils
 from os import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+from . import utils
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
