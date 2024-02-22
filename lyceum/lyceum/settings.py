@@ -19,8 +19,6 @@ ALLOWED_HOSTS = environ.get(
     "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]"
 ).split(",")
 
-ALLOW_REVERSE = utils.get_bool_from_env("DJANGO_ALLOW_REVERSE", "true")
-
 
 INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
@@ -49,9 +47,6 @@ if DEBUG:
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
     INTERNAL_IPS = ["127.0.0.1"]
-
-if ALLOW_REVERSE:
-    MIDDLEWARE += ["lyceum.middleware.ReverseMiddleware"]
 
 ROOT_URLCONF = "lyceum.urls"
 
