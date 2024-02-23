@@ -64,7 +64,6 @@ class ModelTests(django.test.TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), item_count + 1)
 
     def test_item_not_gorgeous_validator(self):
-        item_count = catalog.models.Item.objects.count()
         with self.assertRaises(django.core.exceptions.ValidationError):
             self.item = catalog.models.Item.objects.create(
                 name="Товар тестовый",
