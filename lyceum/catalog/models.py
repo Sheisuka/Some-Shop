@@ -1,7 +1,7 @@
 from django.core import exceptions, validators
 from django.db import models
 
-from Core.models import AbstractModel
+from core.models import AbstractModel
 
 
 def item_text_validator(value):
