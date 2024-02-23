@@ -58,7 +58,7 @@ class ModelTests(django.test.TestCase):
         self.item = catalog.models.Item.objects.create(
             name="Тестовый товар",
             category=self.category,
-            text="Превосходно",
+            text="превосходно",
         )
 
         self.item.tags.add(self.tag)
