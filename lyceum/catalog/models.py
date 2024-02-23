@@ -8,7 +8,7 @@ def item_text_validator(value):
     words = value.lower().split()
     if not ("превосходно" in words or "роскошно" in words):
         raise exceptions.ValidationError(
-            'В тексте должно содержаться "роскошно" или "превосходно"'
+            ('В тексте должно содержаться "роскошно" или "превосходно"'),
         )
 
 
@@ -42,7 +42,7 @@ class Category(AbstractModel):
     @classmethod
     def get_default_pk(cls):
         category, created = cls.objects.get_or_create(
-            name="Другое", defaults=dict(slug="other")
+            name="Другое", slug="other-slug",
         )
         return category.pk
 
@@ -65,7 +65,7 @@ class Item(AbstractModel):
         help_text="Выберите категорию",
     )
     tags = models.ManyToManyField(
-        Tag, verbose_name="Тег", help_text="Выберите теги"
+        Tag, verbose_name="Тег", help_text="Выберите теги",
     )
 
     class Meta:

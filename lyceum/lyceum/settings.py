@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from . import utils
+from lyceum import utils
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,7 +73,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
 }
 
 

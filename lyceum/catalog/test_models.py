@@ -24,7 +24,7 @@ class ModelTests(django.test.TestCase):
         category_count = catalog.models.Category.objects.count()
         with self.assertRaises(django.core.exceptions.ValidationError):
             self.category = catalog.models.Category(
-                name="Тестовая категория", slug="test-category-slug", weight=0
+                name="Тестовая категория", slug="test-category-slug", weight=0,
             )
             self.category.full_clean()
             self.category.save()
@@ -45,7 +45,7 @@ class ModelTests(django.test.TestCase):
             self.category.save()
 
         self.assertEqual(
-            catalog.models.Category.objects.count(), category_count
+            catalog.models.Category.objects.count(), category_count,
         )
 
     def test_create_item(self):
