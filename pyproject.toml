@@ -1,8 +1,8 @@
 [tool.flake8]
-exclude = 'venv'
+exclude = ['venv', 'migrations']
 inline-quotes = '"'
 import-order-style = 'google'
-application-import-names = ['about', 'catalog', 'homepage']
+application-import-names = ['about', 'catalog', 'homepage', 'Core']
 count = true
 
 [tool.black]
