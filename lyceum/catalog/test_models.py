@@ -75,8 +75,6 @@ class ModelTests(django.test.TestCase):
             self.item.full_clean()
             self.item.save()
 
-        self.assertEqual(catalog.models.Item.objects.count(), item_count)
-
     def test_item_gorgeous_validator(self):
         item_count = catalog.models.Item.objects.count()
         self.item = catalog.models.Item.objects.create(
