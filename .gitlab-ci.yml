@@ -16,7 +16,7 @@ flake8:
     stage: linting
     image: registry.gitlab.com/pipeline-components/flake8:latest
     script:
-    - flake8 --count --exclude venv --verbose --inline-quotes '"' --import-order-style google --application-import-names about,catalog,homepage lyceum
+    - flake8 --count --exclude venv,migrations --verbose --inline-quotes '"' --import-order-style google --application-import-names about,catalog,homepage,Core lyceum
 
 black:
     stage: linting
