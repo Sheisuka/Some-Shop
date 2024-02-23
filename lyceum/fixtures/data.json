@@ -4,8 +4,8 @@
   "pk": 1,
   "fields": {
     "is_published": true,
-    "name": "Cool",
-    "slug": "cool"
+    "name": "Amazing",
+    "slug": "amazing-tag"
   }
 },
 {
@@ -14,7 +14,7 @@
   "fields": {
     "is_published": true,
     "name": "Wow",
-    "slug": "wow"
+    "slug": "wow-tag"
   }
 },
 {
@@ -22,8 +22,8 @@
   "pk": 3,
   "fields": {
     "is_published": true,
-    "name": "Amazing",
-    "slug": "amazing"
+    "name": "Cool",
+    "slug": "cool-tag"
   }
 },
 {
@@ -31,8 +31,8 @@
   "pk": 4,
   "fields": {
     "is_published": true,
-    "name": "Kakerlak",
-    "slug": "kakerlak"
+    "name": "Gorgeous",
+    "slug": "gorgeous-tag"
   }
 },
 {
@@ -40,8 +40,8 @@
   "pk": 5,
   "fields": {
     "is_published": true,
-    "name": "Bad",
-    "slug": "bad"
+    "name": "Pretty",
+    "slug": "pretty-tag"
   }
 },
 {
@@ -49,8 +49,8 @@
   "pk": 1,
   "fields": {
     "is_published": true,
-    "name": "Category1",
-    "slug": "category1",
+    "name": "Р”СЂСѓРіРѕРµ",
+    "slug": "other",
     "weight": 100
   }
 },
@@ -59,8 +59,8 @@
   "pk": 2,
   "fields": {
     "is_published": true,
-    "name": "Category2",
-    "slug": "category2",
+    "name": "Animals",
+    "slug": "animals-category",
     "weight": 100
   }
 },
@@ -69,8 +69,8 @@
   "pk": 3,
   "fields": {
     "is_published": true,
-    "name": "Другое",
-    "slug": "other",
+    "name": "Ants",
+    "slug": "ants-category",
     "weight": 100
   }
 },
@@ -79,11 +79,12 @@
   "pk": 1,
   "fields": {
     "is_published": true,
-    "name": "Товар1",
-    "text": "Воистину превосходно",
+    "name": "Testtovar1",
+    "text": "Р РѕСЃРєРѕС€РЅРѕ РІРѕРёСЃС‚РёРЅСѓ",
     "category": 2,
     "tags": [
-      3
+      3,
+      4
     ]
   }
 },
@@ -92,11 +93,23 @@
   "pk": 2,
   "fields": {
     "is_published": true,
-    "name": "Товар2",
-    "text": "Воистину роскошно",
-    "category": 2,
+    "name": "WowTovar2",
+    "text": "РџСЂРµРІРѕСЃС…РѕРґРЅРѕ РІРѕРёСЃС‚РёРЅСѓ",
+    "category": 1,
     "tags": [
-      2,
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 3,
+  "fields": {
+    "is_published": true,
+    "name": "Tovar3",
+    "text": "РџСЂРµРІРѕСЃС…РѕРґРЅРѕ",
+    "category": 3,
+    "tags": [
       4
     ]
   }
