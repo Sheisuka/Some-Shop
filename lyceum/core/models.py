@@ -8,7 +8,7 @@ class AbstractModel(models.Model):
     )
     name = models.TextField(
         max_length=150,
-        name="Название",
+        verbose_name="Название",
         help_text="Максимум 150 символов",
     )
 
