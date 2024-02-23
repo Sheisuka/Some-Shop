@@ -2,7 +2,7 @@
 exclude = ['venv', 'migrations']
 inline-quotes = '"'
 import-order-style = 'google'
-application-import-names = ['about', 'catalog', 'homepage', 'Core']
+application-import-names = ['about', 'catalog', 'homepage', 'core']
 count = true
 
 [tool.black]
