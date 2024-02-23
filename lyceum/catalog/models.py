@@ -1,5 +1,5 @@
-from django.db import models
 from django.core import exceptions, validators
+from django.db import models
 
 from Core.models import AbstractModel
 
@@ -53,7 +53,8 @@ class Item(AbstractModel):
     text = models.TextField(
         validators=[item_text_validator],
         verbose_name="Текст",
-        help_text='Описание должно содержать слова "роскошно" или "превосходно"',
+        help_text="Описание должно содержать"
+        'слова "роскошно" или "превосходно"',
     )
     category = models.ForeignKey(
         Category,
