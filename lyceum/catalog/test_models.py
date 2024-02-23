@@ -32,7 +32,8 @@ class ModelTests(django.test.TestCase):
             self.category.save()
 
         self.assertEqual(
-            catalog.models.Category.objects.count(), category_count,
+            catalog.models.Category.objects.count(),
+            category_count,
         )
 
     def test_unable_create_category_heavy_weight(self):

@@ -16,7 +16,8 @@ SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "fake-key")
 DEBUG = utils.get_bool_from_env("DJANGO_DEBUG", "true")
 
 ALLOWED_HOSTS = environ.get(
-    "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]",
+    "DJANGO_ALLOWED_HOSTS",
+    "localhost,127.0.0.1,[::1]",
 ).split(",")
 
 
