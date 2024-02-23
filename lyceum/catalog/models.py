@@ -5,14 +5,15 @@ from core.models import AbstractModel
 
 
 def item_text_validator(value):
-    if not ("превосходно" in value.lower() or "роскошно" in value.lower()):
+    words = value.lower().split()
+    if not ("превосходно" in words or "роскошно" in words):
         raise exceptions.ValidationError(
             'В тексте должно содержаться "роскошно" или "превосходно"'
         )
 
 
 class Tag(AbstractModel):
-    slug = models.SlugField(verbose_name="Слаг", max_length=200)
+    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True)
 
     class Meta:
         verbose_name = "Тег"
@@ -23,7 +24,7 @@ class Tag(AbstractModel):
 
 
 class Category(AbstractModel):
-    slug = models.SlugField(verbose_name="Слаг", max_length=200)
+    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True)
     weight = models.PositiveSmallIntegerField(
         validators=[
             validators.MinValueValidator(1),
