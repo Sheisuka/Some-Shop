@@ -12,20 +12,20 @@ def item_text_validator(value):
 
 
 class Tag(AbstractModel):
-    slug = models.SlugField("Слаг", max_length=200, unique=True)
+    slug = models.SlugField("слаг", max_length=200, unique=True)
 
     class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
+        verbose_name = "тег"
+        verbose_name_plural = "теги"
 
     def __str__(self):
         return self.name
 
 
 class Category(AbstractModel):
-    slug = models.SlugField("Слаг", max_length=200, unique=True)
+    slug = models.SlugField("слаг", max_length=200, unique=True)
     weight = models.PositiveSmallIntegerField(
-        "Вес",
+        "вес",
         validators=[
             validators.MinValueValidator(1),
             validators.MaxValueValidator(32767),
@@ -35,8 +35,8 @@ class Category(AbstractModel):
     )
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
 
     @classmethod
     def get_default_pk(cls):
@@ -52,7 +52,7 @@ class Category(AbstractModel):
 
 class Item(AbstractModel):
     text = models.TextField(
-        "Текст",
+        "текст",
         validators=[item_text_validator],
         help_text="Описание должно содержать "
         'слова "роскошно" или "превосходно"',
@@ -71,8 +71,8 @@ class Item(AbstractModel):
     )
 
     class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
+        verbose_name = "товар"
+        verbose_name_plural = "товары"
 
     def __str__(self):
         return self.name[:15]
