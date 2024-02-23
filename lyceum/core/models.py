@@ -3,11 +3,11 @@ from django.db import models
 
 class AbstractModel(models.Model):
     is_published = models.BooleanField(
-        "Опубликовано",
+        "опубликовано",
         default=True,
     )
     name = models.TextField(
-        "Название",
+        "название",
         max_length=150,
         help_text="Максимум 150 символов",
         unique=True,

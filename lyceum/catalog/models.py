@@ -54,7 +54,7 @@ class Item(AbstractModel):
     text = models.TextField(
         "Текст",
         validators=[item_text_validator],
-        help_text="Описание должно содержать"
+        help_text="Описание должно содержать "
         'слова "роскошно" или "превосходно"',
     )
     category = models.ForeignKey(
