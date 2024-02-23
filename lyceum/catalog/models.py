@@ -12,7 +12,7 @@ def item_text_validator(value):
 
 
 class Tag(AbstractModel):
-    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True)
+    slug = models.SlugField("Слаг", max_length=200, unique=True)
 
     class Meta:
         verbose_name = "Тег"
@@ -23,14 +23,14 @@ class Tag(AbstractModel):
 
 
 class Category(AbstractModel):
-    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True)
+    slug = models.SlugField("Слаг", max_length=200, unique=True)
     weight = models.PositiveSmallIntegerField(
+        "Вес",
         validators=[
             validators.MinValueValidator(1),
             validators.MaxValueValidator(32767),
         ],
         default=100,
-        verbose_name="Вес",
         help_text="Вес должен быть больше нуля и меньше 32767",
     )
 
@@ -52,22 +52,22 @@ class Category(AbstractModel):
 
 class Item(AbstractModel):
     text = models.TextField(
+        "Текст",
         validators=[item_text_validator],
-        verbose_name="Текст",
         help_text="Описание должно содержать"
         'слова "роскошно" или "превосходно"',
     )
     category = models.ForeignKey(
         Category,
-        verbose_name="Категория",
         on_delete=models.CASCADE,
         default=Category.get_default_pk,
         help_text="Выберите категорию",
+        related_name="items",
     )
     tags = models.ManyToManyField(
         Tag,
-        verbose_name="Тег",
         help_text="Выберите теги",
+        related_name="items",
     )
 
     class Meta:
