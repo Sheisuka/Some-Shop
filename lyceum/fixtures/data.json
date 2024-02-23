@@ -45,6 +45,15 @@
   }
 },
 {
+  "model": "catalog.tag",
+  "pk": 6,
+  "fields": {
+    "is_published": true,
+    "name": "Тестовый тег",
+    "slug": "test-tag-slug"
+  }
+},
+{
   "model": "catalog.category",
   "pk": 1,
   "fields": {
@@ -75,12 +84,22 @@
   }
 },
 {
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "is_published": true,
+    "name": "Тестовая категория",
+    "slug": "test-category-slug",
+    "weight": 100
+  }
+},
+{
   "model": "catalog.item",
   "pk": 1,
   "fields": {
     "is_published": true,
     "name": "Testtovar1",
-    "text": "Роскошно воистину",
+    "text": "роскошно воистину",
     "category": 2,
     "tags": [
       3,
@@ -94,7 +113,7 @@
   "fields": {
     "is_published": true,
     "name": "WowTovar2",
-    "text": "Превосходно воистину",
+    "text": "ввааау превосходно воистину",
     "category": 1,
     "tags": [
       3
@@ -107,10 +126,23 @@
   "fields": {
     "is_published": true,
     "name": "Tovar3",
-    "text": "Превосходно",
+    "text": "правда превосходно",
     "category": 3,
     "tags": [
       4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "is_published": true,
+    "name": "Товар",
+    "text": "товар роскошно",
+    "category": 4,
+    "tags": [
+      6
     ]
   }
 }
