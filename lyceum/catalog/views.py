@@ -6,12 +6,4 @@ def item_list(request):
 
 
 def item_detail(request, pk):
-    return django.http.HttpResponse("Подробно элемент")
-
-
-def re_view(request, value):
-    return django.http.HttpResponse(value)
-
-
-def converter_view(request, value):
-    return django.http.HttpResponse(str(value))
+    return django.http.HttpResponse(f"Подробно элемент {pk}")

@@ -1,77 +1,52 @@
+import http
+import itertools
+
 import django.test
+import parameterized.parameterized
 
 
-class ItemListTests(django.test.TestCase):
-    def test_item_list_code(self):
+class StaticURLTests(django.test.TestCase):
+    def test_catalog_item_list_code(self):
         response = self.client.get("/catalog/")
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
-    def test_item_list_content(self):
-        response = self.client.get("/catalog/")
-        self.assertEqual(response.content, "Список элементов".encode())
+    @parameterized.parameterized.expand(
+        [
+            ("1", http.HTTPStatus.OK),
+            ("100", http.HTTPStatus.OK),
+            ("0", http.HTTPStatus.OK),
+            ("-0", http.HTTPStatus.NOT_FOUND),
+            ("0.1", http.HTTPStatus.NOT_FOUND),
+            ("-100", http.HTTPStatus.NOT_FOUND),
+            ("abc", http.HTTPStatus.NOT_FOUND),
+            ("1e5", http.HTTPStatus.NOT_FOUND)
+        ]
+    )
+    def test_catalog_item_detail_code(self, value, expected_status):
+        response = self.client.get(f"/catalog/{value}/")
+        self.assertEqual(response.status_code, expected_status)
 
-
-class ItemDetailTests(django.test.TestCase):
-    def test_item_detail_zero_code(self):
-        response = self.client.get("/catalog/0/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_item_detail_negative_code(self):
-        response = self.client.get("/catalog/-10")
-        self.assertEqual(response.status_code, 404)
-
-    def test_item_detail_letters_code(self):
-        response = self.client.get("/catalog/abc")
-        self.assertEqual(response.status_code, 404)
-
-    def test_item_detail_symbols_code(self):
-        response = self.client.get("/catalog/@-!--/")
-        self.assertEqual(response.status_code, 404)
-
-
-class ReTests(django.test.TestCase):
-    def test_re_negative_code(self):
-        response = self.client.get("/catalog/re/-10/")
-        self.assertEqual(response.status_code, 404)
-
-    def test_re_letters_code(self):
-        response = self.client.get("/catalog/re/abc/")
-        self.assertEqual(response.status_code, 404)
-
-    def test_re_zero_code(self):
-        response = self.client.get("/catalog/re/0/")
-        self.assertEqual(response.status_code, 404)
-
-    def test_re_code(self):
-        response = self.client.get("/catalog/re/100/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_re_content(self):
-        response = self.client.get("/catalog/re/100/")
-        self.assertEqual(response.content, "100".encode())
-
-    def test_re_symbols_code(self):
-        response = self.client.get("/catalog/re/@-!--/")
-        self.assertEqual(response.status_code, 404)
-
-
-class ConverterTests(django.test.TestCase):
-    def test_converter_code(self):
-        response = self.client.get("/catalog/converter/100/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_converter_content(self):
-        response = self.client.get("/catalog/converter/50/")
-        self.assertEqual(response.content, "50".encode())
-
-    def test_converter_letters_code(self):
-        response = self.client.get("/catalog/converter/abc/")
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_negative_code(self):
-        response = self.client.get("/catalog/converter/-10/")
-        self.assertEqual(response.status_code, 404)
-
-    def test_converter_symbols_code(self):
-        response = self.client.get("/catalog/converter/@-!--/")
-        self.assertEqual(response.status_code, 404)
+    @parameterized.parameterized.expand(
+        map(
+            lambda x: (x[0], x[1][0], x[1][1]),
+            itertools.product(
+                [
+                    "converter",
+                    "re"
+                ],
+                [
+                    ("1", http.HTTPStatus.OK),
+                    ("100", http.HTTPStatus.OK),
+                    ("0", http.HTTPStatus.NOT_FOUND),
+                    ("-0", http.HTTPStatus.NOT_FOUND),
+                    ("-100", http.HTTPStatus.NOT_FOUND),
+                    ("abc", http.HTTPStatus.NOT_FOUND),
+                    ("-0.2", http.HTTPStatus.NOT_FOUND),
+                    ("1e5", http.HTTPStatus.NOT_FOUND)
+                ]
+            )
+        )
+    )
+    def test_converters_code(self, prefix, value, expected_status):
+        response = self.client.get(f"/catalog/{prefix}/{value}/")
+        self.assertEqual(response.status_code, expected_status)
