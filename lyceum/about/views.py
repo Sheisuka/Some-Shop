@@ -1,4 +1,4 @@
-import django.http 
+import django.http
 
 
 def description(request):
