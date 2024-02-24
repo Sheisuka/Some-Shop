@@ -1,9 +1,12 @@
-from os import environ
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-from lyceum import utils
+
+def get_bool_from_env(key, default="y"):
+    val = os.environ.get(key, str(default))
+    return val.lower() in ("yes", "true", "1", "y", "t")
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,11 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Env vars have higher priority
 load_dotenv(BASE_DIR / "../.env", override=False)
 
-SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "fake-key")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fake-key")
 
-DEBUG = utils.get_bool_from_env("DJANGO_DEBUG", "true")
+DEBUG = get_bool_from_env("DJANGO_DEBUG", "true")
 
-ALLOWED_HOSTS = environ.get(
+ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS",
     "localhost,127.0.0.1,[::1]",
 ).split(",")

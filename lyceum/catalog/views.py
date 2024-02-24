@@ -1,17 +1,17 @@
-from django.http import HttpResponse
+import django.http
 
 
 def item_list(request):
-    return HttpResponse("Список элементов")
+    return django.http.HttpResponse("Список элементов")
 
 
 def item_detail(request, pk):
-    return HttpResponse("Подробно элемент")
+    return django.http.HttpResponse("Подробно элемент")
 
 
 def re_view(request, value):
-    return HttpResponse(value)
+    return django.http.HttpResponse(value)
 
 
 def converter_view(request, value):
-    return HttpResponse(str(value))
+    return django.http.HttpResponse(str(value))

@@ -1,6 +1,7 @@
-import django
+import django.core
+import django.test
 
-import catalog
+import catalog.models
 
 
 class ModelTests(django.test.TestCase):

@@ -1,12 +1,12 @@
-from django.db import models
+import django.db
 
 
-class AbstractModel(models.Model):
-    is_published = models.BooleanField(
+class AbstractModel(django.db.models.Model):
+    is_published = django.db.models.BooleanField(
         "опубликовано",
         default=True,
     )
-    name = models.TextField(
+    name = django.db.models.TextField(
         "название",
         max_length=150,
         help_text="Максимум 150 символов",

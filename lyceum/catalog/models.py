@@ -1,19 +1,12 @@
-from django.core import exceptions, validators
-from django.db import models
+import django.core.validators
+import django.db.models
 
-from core.models import AbstractModel
-
-
-def item_text_validator(value):
-    words = value.split()
-    if not ("превосходно" in words or "роскошно" in words):
-        raise exceptions.ValidationError(
-            ('В тексте должно содержаться "роскошно" или "превосходно"'),
-        )
+import catalog.validators
+import core.models
 
 
-class Tag(AbstractModel):
-    slug = models.SlugField("слаг", max_length=200, unique=True)
+class Tag(core.models.AbstractModel):
+    slug = django.db.models.SlugField("слаг", max_length=200, unique=True)
 
     class Meta:
         verbose_name = "тег"
@@ -23,13 +16,13 @@ class Tag(AbstractModel):
         return self.name
 
 
-class Category(AbstractModel):
-    slug = models.SlugField("слаг", max_length=200, unique=True)
-    weight = models.PositiveSmallIntegerField(
+class Category(core.models.AbstractModel):
+    slug = django.db.models.SlugField("слаг", max_length=200, unique=True)
+    weight = django.db.models.PositiveSmallIntegerField(
         "вес",
         validators=[
-            validators.MinValueValidator(1),
-            validators.MaxValueValidator(32767),
+            django.core.validators.MinValueValidator(1),
+            django.core.validators.MaxValueValidator(32767),
         ],
         default=100,
         help_text="Вес должен быть больше нуля и меньше 32767",
@@ -51,21 +44,21 @@ class Category(AbstractModel):
         return self.name
 
 
-class Item(AbstractModel):
-    text = models.TextField(
+class Item(core.models.AbstractModel):
+    text = django.db.models.TextField(
         "текст",
-        validators=[item_text_validator],
+        validators=[catalog.validators.item_text_validator],
         help_text="Описание должно содержать "
         'слова "роскошно" или "превосходно"',
     )
-    category = models.ForeignKey(
+    category = django.db.models.ForeignKey(
         Category,
-        on_delete=models.CASCADE,
+        on_delete=django.db.models.CASCADE,
         default=Category.get_default_pk,
         help_text="Выберите категорию",
         related_name="items",
     )
-    tags = models.ManyToManyField(
+    tags = django.db.models.ManyToManyField(
         Tag,
         help_text="Выберите теги",
         related_name="items",

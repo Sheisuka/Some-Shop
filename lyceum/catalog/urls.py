@@ -1,12 +1,13 @@
-from django.urls import path, re_path, register_converter
+import django.urls
 
-from catalog import converters, views
+import catalog.converters
+import catalog.views
 
-register_converter(converters.PositiveIntegerConverter, "pint")
+django.urls.register_converter(catalog.converters.PositiveIntegerConverter, "pint")
 
 urlpatterns = [
-    path("", views.item_list),
-    path("<int:pk>/", views.item_detail),
-    re_path(r"^re\/(?P<value>[1-9][0-9]*)\/?$", views.re_view),
-    path("converter/<pint:value>/", views.converter_view),
+    django.urls.path("", catalog.views.item_list),
+    django.urls.path("<int:pk>/", catalog.views.item_detail),
+    django.urls.re_path(r"^re\/(?P<value>[1-9][0-9]*)\/?$", catalog.views.re_view),
+    django.urls.path("converter/<pint:value>/", catalog.views.converter_view),
 ]

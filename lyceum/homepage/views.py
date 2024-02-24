@@ -1,12 +1,12 @@
-from http import HTTPStatus
+import http
 
-from django.http import HttpResponse
+import django.http
 
 
 def home(request):
-    return HttpResponse("Главная")
+    return django.http.HttpResponse("Главная")
 
 
 def coffee(request):
-    response = HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)
+    response = django.http.HttpResponse("Я чайник", status=http.HTTPStatus.IM_A_TEAPOT)
     return response

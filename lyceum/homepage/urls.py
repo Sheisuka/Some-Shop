@@ -1,9 +1,9 @@
-from django.urls import path
+import django.urls
 
-from homepage import views
+import homepage.views
 
 
 urlpatterns = [
-    path("", views.home),
-    path("coffee/", views.coffee),
+    django.urls.path("", homepage.views.home),
+    django.urls.path("coffee/", homepage.views.coffee),
 ]

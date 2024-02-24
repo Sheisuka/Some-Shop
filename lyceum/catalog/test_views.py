@@ -1,7 +1,7 @@
-from django.test import TestCase
+import django.test
 
 
-class ItemListTests(TestCase):
+class ItemListTests(django.test.TestCase):
     def test_item_list_code(self):
         response = self.client.get("/catalog/")
         self.assertEqual(response.status_code, 200)
@@ -11,7 +11,7 @@ class ItemListTests(TestCase):
         self.assertEqual(response.content, "Список элементов".encode())
 
 
-class ItemDetailTests(TestCase):
+class ItemDetailTests(django.test.TestCase):
     def test_item_detail_zero_code(self):
         response = self.client.get("/catalog/0/")
         self.assertEqual(response.status_code, 200)
@@ -29,7 +29,7 @@ class ItemDetailTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-class ReTests(TestCase):
+class ReTests(django.test.TestCase):
     def test_re_negative_code(self):
         response = self.client.get("/catalog/re/-10/")
         self.assertEqual(response.status_code, 404)
@@ -55,7 +55,7 @@ class ReTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-class ConverterTests(TestCase):
+class ConverterTests(django.test.TestCase):
     def test_converter_code(self):
         response = self.client.get("/catalog/converter/100/")
         self.assertEqual(response.status_code, 200)
