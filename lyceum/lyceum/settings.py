@@ -18,6 +18,8 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fake-key")
 
 DEBUG = get_bool_from_env("DJANGO_DEBUG", "true")
 
+ALLOW_REVERSE = get_bool_from_env("DJANGO_ALLOW_REVERSE", "true")
+
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS",
     "localhost,127.0.0.1,[::1]",
@@ -51,6 +53,9 @@ if DEBUG:
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
     INTERNAL_IPS = ["127.0.0.1"]
+
+if ALLOW_REVERSE:
+    MIDDLEWARE += ["lyceum.middleware.ReverseRussianMiddleware"]
 
 ROOT_URLCONF = "lyceum.urls"
 
