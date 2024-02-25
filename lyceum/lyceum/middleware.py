@@ -38,4 +38,5 @@ class ReverseRussianMiddleware:
         ]
 
         response.content = "".join(transformed).encode()
+
         return response
