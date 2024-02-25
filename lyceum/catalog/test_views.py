@@ -19,7 +19,7 @@ class StaticURLTests(django.test.TestCase):
             ("0.1", http.HTTPStatus.NOT_FOUND),
             ("-100", http.HTTPStatus.NOT_FOUND),
             ("abc", http.HTTPStatus.NOT_FOUND),
-            ("1e5", http.HTTPStatus.NOT_FOUND)
+            ("1e5", http.HTTPStatus.NOT_FOUND),
         ]
     )
     def test_catalog_item_detail_code(self, value, expected_status):
@@ -30,10 +30,7 @@ class StaticURLTests(django.test.TestCase):
         map(
             lambda x: (x[0], x[1][0], x[1][1]),
             itertools.product(
-                [
-                    "converter",
-                    "re"
-                ],
+                ["converter", "re"],
                 [
                     ("1", http.HTTPStatus.OK),
                     ("100", http.HTTPStatus.OK),
@@ -42,9 +39,9 @@ class StaticURLTests(django.test.TestCase):
                     ("-100", http.HTTPStatus.NOT_FOUND),
                     ("abc", http.HTTPStatus.NOT_FOUND),
                     ("-0.2", http.HTTPStatus.NOT_FOUND),
-                    ("1e5", http.HTTPStatus.NOT_FOUND)
-                ]
-            )
+                    ("1e5", http.HTTPStatus.NOT_FOUND),
+                ],
+            ),
         )
     )
     def test_converters_code(self, prefix, value, expected_status):
