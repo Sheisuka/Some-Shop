@@ -28,8 +28,8 @@ class StaticURLTests(django.test.TestCase):
 
     @parameterized.parameterized.expand(
         [
-            (item[0], item[1][0], item[1][1]) for item in
-            itertools.product(
+            (item[0], item[1][0], item[1][1])
+            for item in itertools.product(
                 ["converter", "re"],
                 [
                     ("1", http.HTTPStatus.OK),
