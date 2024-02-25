@@ -4,7 +4,7 @@ import catalog.converters
 import catalog.views
 
 django.urls.register_converter(
-    catalog.converters.PositiveIntegerConverter, "pint"
+    catalog.converters.PositiveIntegerConverter, "pint",
 )
 
 urlpatterns = [

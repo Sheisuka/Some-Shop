@@ -4,13 +4,16 @@ import django.test
 class RussianReverseMiddlewareTests(django.test.TestCase):
     @django.test.override_settings(ALLOW_REVERSE=True)
     def test_reverse_russian_words_enabled(self):
-        contents = dict()
+        counts = []
         for _ in range(10):
             content = self.client.get("/coffee/").content
-            contents[content] = contents.get(content, 0) + 1
+            counts.append(content)
 
-        self.assertEqual(contents["Я чайник".encode()], 9)
-        self.assertEqual(contents["Я кинйач".encode()], 1)
+        count_no_reverse = counts.count("Я чайник".encode())
+        count_reverse = counts.count("Я кинйач".encode())
+
+        self.assertEqual(count_no_reverse, 9)
+        self.assertEqual(count_reverse, 1)
 
     @django.test.override_settings(ALLOW_REVERSE=False)
     def test_reverse_russian_words_disabled(self):

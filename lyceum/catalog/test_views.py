@@ -20,15 +20,15 @@ class StaticURLTests(django.test.TestCase):
             ("-100", http.HTTPStatus.NOT_FOUND),
             ("abc", http.HTTPStatus.NOT_FOUND),
             ("1e5", http.HTTPStatus.NOT_FOUND),
-        ]
+        ],
     )
     def test_catalog_item_detail_code(self, value, expected_status):
         response = self.client.get(f"/catalog/{value}/")
         self.assertEqual(response.status_code, expected_status)
 
     @parameterized.parameterized.expand(
-        map(
-            lambda x: (x[0], x[1][0], x[1][1]),
+        [
+            (item[0], item[1][0], item[1][1]) for item in
             itertools.product(
                 ["converter", "re"],
                 [
@@ -41,8 +41,8 @@ class StaticURLTests(django.test.TestCase):
                     ("-0.2", http.HTTPStatus.NOT_FOUND),
                     ("1e5", http.HTTPStatus.NOT_FOUND),
                 ],
-            ),
-        )
+            )
+        ],
     )
     def test_converters_code(self, prefix, value, expected_status):
         response = self.client.get(f"/catalog/{prefix}/{value}/")
