@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fake-key")
 
 DEBUG = get_bool_from_env("DJANGO_DEBUG", "true")
 
-ALLOW_REVERSE = get_bool_from_env("DJANGO_ALLOW_REVERSE", "false")
+ALLOW_REVERSE = get_bool_from_env("DJANGO_ALLOW_REVERSE", "true")
 
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS",
