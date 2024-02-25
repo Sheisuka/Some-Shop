@@ -1,5 +1,6 @@
 import django.core
 import django.test
+import parameterized
 
 import catalog.models
 
@@ -21,13 +22,28 @@ class ModelTests(django.test.TestCase):
             slug="test-tag-slug",
         )
 
-    def test_unable_create_category_zero_weight(self):
+    def tearDown(self):
+        catalog.models.Item.objects.all().delete()
+        catalog.models.Tag.objects.all().delete()
+        catalog.models.Category.objects.all().delete()
+
+        super().tearDown()
+
+    @parameterized.parameterized.expand(
+        [
+            (-100,),
+            (-1),
+            (0),
+            (40000),
+        ]
+    )
+    def test_unable_create_category_bad_weight(self, value):
         category_count = catalog.models.Category.objects.count()
         with self.assertRaises(django.core.exceptions.ValidationError):
             self.category = catalog.models.Category(
-                name="Тестовая категория",
-                slug="test-category-slug",
-                weight=0,
+                name="Какая-то категория",
+                slug="some-category-slug",
+                weight=value,
             )
             self.category.full_clean()
             self.category.save()
@@ -37,60 +53,65 @@ class ModelTests(django.test.TestCase):
             category_count,
         )
 
-    def test_unable_create_category_heavy_weight(self):
+    @parameterized.parameterized.expand(
+        [
+            (1,),
+            (10),
+            (1000),
+            (32767),
+        ]
+    )
+    def test_create_category_good_weight(self, value):
         category_count = catalog.models.Category.objects.count()
-        with self.assertRaises(django.core.exceptions.ValidationError):
-            self.category = catalog.models.Category(
-                name="Тестовая категория",
-                slug="test-category-slug",
-                weight=32768,
-            )
-            self.category.full_clean()
-            self.category.save()
+        self.category = catalog.models.Category(
+            name="Какая-то категория",
+            slug="some-category-slug",
+            weight=value,
+        )
+        self.category.full_clean()
+        self.category.save()
 
         self.assertEqual(
             catalog.models.Category.objects.count(),
-            category_count,
+            category_count + 1,
         )
 
-    def test_create_item(self):
+    @parameterized.parameterized.expand(
+        [
+            ("роскошно!",),
+            ("превосходно!",),
+            ("не превосходно",),
+            ("Не превосходно!",),
+        ]
+    )
+    def test_create_item_positive(self, value):
         item_count = catalog.models.Item.objects.count()
 
         self.item = catalog.models.Item.objects.create(
-            name="Тестовый товар",
+            name="Какой-то товар",
             category=self.category,
-            text="превосходно",
+            text=value,
         )
 
-        self.item.tags.add(self.tag)
         self.item.save()
         self.item.full_clean()
+        self.item.tags.add(self.tag)
 
         self.assertEqual(catalog.models.Item.objects.count(), item_count + 1)
 
-    def test_item_not_gorgeous_validator(self):
+    @parameterized.parameterized.expand(
+        [("роскошный",), ("раскошный",), ("превосходный"), ("qweirtроскошно",)]
+    )
+    def test_create_item_negative(self, value):
         item_count = catalog.models.Item.objects.count()
         with self.assertRaises(django.core.exceptions.ValidationError):
             self.item = catalog.models.Item(
                 name="Товар тестовый",
                 category=self.category,
-                text="Данный товар это очень плохо",
+                text=value,
             )
             self.item.full_clean()
             self.item.save()
             self.item.tags.add(self.tag)
 
         self.assertEqual(catalog.models.Item.objects.count(), item_count)
-
-    def test_item_gorgeous_validator(self):
-        item_count = catalog.models.Item.objects.count()
-        self.item = catalog.models.Item(
-            name="Товар тестовый",
-            category=self.category,
-            text="Данный товар это очень роскошно",
-        )
-        self.item.full_clean()
-        self.item.save()
-        self.item.tags.add(self.tag)
-
-        self.assertEqual(catalog.models.Item.objects.count(), item_count + 1)

@@ -47,7 +47,7 @@ class Category(core.models.AbstractModel):
 class Item(core.models.AbstractModel):
     text = django.db.models.TextField(
         "текст",
-        validators=[catalog.validators.item_text_validator],
+        validators=[catalog.validators.gorgeous_validator],
         help_text="Описание должно содержать "
         'слова "роскошно" или "превосходно"',
     )
