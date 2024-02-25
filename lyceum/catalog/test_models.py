@@ -35,7 +35,7 @@ class ModelTests(django.test.TestCase):
             (-1),
             (0),
             (40000),
-        ]
+        ],
     )
     def test_unable_create_category_bad_weight(self, value):
         category_count = catalog.models.Category.objects.count()
@@ -59,7 +59,7 @@ class ModelTests(django.test.TestCase):
             (10),
             (1000),
             (32767),
-        ]
+        ],
     )
     def test_create_category_good_weight(self, value):
         category_count = catalog.models.Category.objects.count()
@@ -82,7 +82,7 @@ class ModelTests(django.test.TestCase):
             ("превосходно!",),
             ("не превосходно",),
             ("Не превосходно!",),
-        ]
+        ],
     )
     def test_create_item_positive(self, value):
         item_count = catalog.models.Item.objects.count()
@@ -100,7 +100,12 @@ class ModelTests(django.test.TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), item_count + 1)
 
     @parameterized.parameterized.expand(
-        [("роскошный",), ("раскошный",), ("превосходный"), ("qweirtроскошно",)]
+        [
+            ("роскошный",),
+            ("раскошный",),
+            ("превосходный"),
+            ("qweirtроскошно",),
+        ],
     )
     def test_create_item_negative(self, value):
         item_count = catalog.models.Item.objects.count()
