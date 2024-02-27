@@ -19,7 +19,7 @@ def gorgeous_validator(value):
 @django.utils.deconstruct.deconstructible
 class ValidateMustContain:
     def __init__(self, *args):
-        self.needed_words = set([word.lower() for word in args])
+        self.needed_words = {word.lower() for word in args}
 
     def __call__(self, value):
         words = set(WORDS_REGEX.findall(value.lower()))
@@ -27,5 +27,5 @@ class ValidateMustContain:
             joined_needed_words = ", ".join(self.needed_words)
             raise django.core.exceptions.ValidationError(
                 "В тексте должно содержаться одно из слов: "
-                f"{joined_needed_words}"
+                f"{joined_needed_words}",
             )

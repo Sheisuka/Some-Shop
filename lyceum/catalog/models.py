@@ -48,7 +48,7 @@ class Item(core.models.AbstractModel):
     text = django.db.models.TextField(
         "текст",
         validators=[
-            catalog.validators.ValidateMustContain("роскошно", "превосходно")
+            catalog.validators.ValidateMustContain("роскошно", "превосходно"),
         ],
         help_text="Описание должно содержать "
         'слова "роскошно" или "превосходно"',
