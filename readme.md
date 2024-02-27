@@ -5,6 +5,11 @@
 Online-store-like website  
 Description to be completed
 
+# Database structure
+In the DB there are 3 main tables: Item, Category, Tag
+
+![ER Diagram](ER.jpg)
+
 
 # Deployment
 If you want to deploy the app you should follow these steps
@@ -43,4 +48,3 @@ Run
 ```bash
 python3 manage.py runserver
 ```
-
