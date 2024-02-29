@@ -76,7 +76,7 @@ class Item(core.models.AbstractModel):
     main_image = django.db.models.OneToOneField(
         verbose_name="главное изображение",
         to="Image",
-        on_delete=django.db.models.DO_NOTHING,
+        on_delete=django.db.models.CASCADE,
         related_name="item_main",
         null=True,
         blank=True,
