@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <section class="item_detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="main-image">
+            <a href="#"><img src="{% static "img/carousel/1.jpg" %}"></a>
+          </div>
+          <div class="row sub-images">
+            <div class="col-3 sub-image">
+              <a href="#"><img src="{% static "img/carousel/1.jpg" %}"></a>
+            </div>
+            <div class="col-3 sub-image">
+              <a href="#"><img src="{% static "img/carousel/1.jpg" %}"></a>
+            </div>
+            <div class="col-3 sub-image">
+              <a href="#"><img src="{% static "img/carousel/1.jpg" %}"></a>
+            </div>
+            <div class="col-3 sub-image">
+              <a href="#"><img src="{% static "img/carousel/1.jpg" %}"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <h1>Название товара</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

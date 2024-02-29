@@ -1,0 +1,38 @@
+{% load static %}
+
+<header>
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url "homepage:home" %}"><img src="{% static "img/logo.svg" %}" width=40 height=40></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% with request.resolver_match.view_name as view_name %}
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == "homepage:home" %}active{% endif %}" href="{% url "homepage:home" %}">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == "catalog:item_list" %}active{% endif %}" href="{% url "catalog:item_list" %}">Список товаров</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == "about:description" %}active{% endif %}" href="{% url "about:description" %}">О проекте</a>
+            </li>
+          </ul>
+        {% endwith %}
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 top-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Профиль</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Поиск</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Корзина</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

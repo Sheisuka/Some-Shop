@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="h-100" lang="ru" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial_scale=1">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static "img/favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "fonts/Roboto-LightItalic.ttf" %}">
+    <script src="{% static "js/bootstrap.bundle.js" %}"></script>
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+      {% include "includes/header.html" %}
+      <main>
+        {% block content %}
+          Контент тютю
+        {% endblock %}
+      </main>
+      {% include "includes/footer.html" %}
+  </body>
+</html>

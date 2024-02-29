@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <section class="items">
+    <div class="container">
+      <div class="row">
+        {% include "catalog/includes/product_card.html" %}
+        {% include "catalog/includes/product_card.html" %}
+        {% include "catalog/includes/product_card.html" %}
+        {% include "catalog/includes/product_card.html" %}
+        {% include "catalog/includes/product_card.html" %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
