@@ -50,46 +50,6 @@ class Category(core.models.AbstractModel):
         return self.name
 
 
-class Item(core.models.AbstractModel):
-    text = django.db.models.TextField(
-        verbose_name="текст",
-        validators=[
-            catalog.validators.ValidateMustContain("роскошно", "превосходно"),
-        ],
-        help_text="Описание должно содержать "
-        'слова "роскошно" или "превосходно"',
-    )
-    category = django.db.models.ForeignKey(
-        verbose_name="категории",
-        to=Category,
-        on_delete=django.db.models.CASCADE,
-        default=Category.get_default_pk,
-        help_text="Выберите категорию",
-        related_name="items",
-    )
-    tags = django.db.models.ManyToManyField(
-        verbose_name="теги",
-        to=Tag,
-        help_text="Выберите теги",
-        related_name="items",
-    )
-    main_image = django.db.models.OneToOneField(
-        verbose_name="главное изображение",
-        to="Image",
-        on_delete=django.db.models.CASCADE,
-        related_name="item_main",
-        null=True,
-        blank=True,
-    )
-
-    class Meta:
-        verbose_name = "товар"
-        verbose_name_plural = "товары"
-
-    def __str__(self):
-        return self.name[:15]
-
-
 class Image(django.db.models.Model):
     image = django.db.models.ImageField(
         verbose_name="изображение",
@@ -97,7 +57,7 @@ class Image(django.db.models.Model):
     )
     item = django.db.models.ForeignKey(
         verbose_name="товар",
-        to=Item,
+        to="Item",
         on_delete=django.db.models.CASCADE,
         related_name="images",
         null=True,
@@ -128,3 +88,43 @@ class Image(django.db.models.Model):
 
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
+
+
+class Item(core.models.AbstractModel):
+    text = django.db.models.TextField(
+        verbose_name="текст",
+        validators=[
+            catalog.validators.ValidateMustContain("роскошно", "превосходно"),
+        ],
+        help_text="Описание должно содержать "
+        'слова "роскошно" или "превосходно"',
+    )
+    category = django.db.models.ForeignKey(
+        verbose_name="категории",
+        to=Category,
+        on_delete=django.db.models.CASCADE,
+        default=Category.get_default_pk,
+        help_text="Выберите категорию",
+        related_name="items",
+    )
+    tags = django.db.models.ManyToManyField(
+        verbose_name="теги",
+        to=Tag,
+        help_text="Выберите теги",
+        related_name="items",
+    )
+    main_image = django.db.models.OneToOneField(
+        verbose_name="главное изображение",
+        to=Image,
+        on_delete=django.db.models.CASCADE,
+        related_name="item_main",
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = "товар"
+        verbose_name_plural = "товары"
+
+    def __str__(self):
+        return self.name[:15]
