@@ -4,6 +4,8 @@ import parameterized
 
 import catalog.models
 
+__all__ = ["ModelTests"]
+
 
 class ModelTests(django.test.TestCase):
     @classmethod

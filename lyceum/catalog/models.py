@@ -6,6 +6,8 @@ import sorl.thumbnail
 import catalog.validators
 import core.models
 
+__all__ = ["Category", "Image", "Item", "Tag"]
+
 
 class Tag(core.models.AbstractModel):
     slug = django.db.models.SlugField(

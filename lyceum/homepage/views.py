@@ -3,6 +3,8 @@ import http
 import django.http
 import django.shortcuts
 
+__all__ = ["coffee", "home"]
+
 
 def home(request):
     template = "homepage/main.html"

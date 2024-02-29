@@ -1,5 +1,7 @@
 import django.db
 
+__all__ = ["AbstractModel"]
+
 
 class AbstractModel(django.db.models.Model):
     is_published = django.db.models.BooleanField(

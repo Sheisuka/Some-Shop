@@ -2,6 +2,8 @@ import http
 
 import django.test
 
+__all__ = ["StaticURLTests"]
+
 
 class StaticURLTests(django.test.TestCase):
     def test_homepage_endpoint_code(self):

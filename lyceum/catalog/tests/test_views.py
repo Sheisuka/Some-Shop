@@ -4,6 +4,8 @@ import itertools
 import django.test
 import parameterized.parameterized
 
+__all__ = ["StaticURLTests"]
+
 
 class StaticURLTests(django.test.TestCase):
     def test_catalog_item_list_code(self):

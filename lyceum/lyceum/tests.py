@@ -1,5 +1,7 @@
 import django.test
 
+__all__ = ["RussianReverseMiddlewareTests"]
+
 
 class RussianReverseMiddlewareTests(django.test.TestCase):
     @django.test.override_settings(ALLOW_REVERSE=True)
