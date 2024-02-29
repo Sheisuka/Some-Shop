@@ -11,7 +11,7 @@ __all__ = ["Category", "Image", "Item", "Tag"]
 
 class Tag(core.models.AbstractModel):
     slug = django.db.models.SlugField(
-        verbose_name="слаг", max_length=200, unique=True
+        verbose_name="слаг", max_length=200, unique=True,
     )
 
     class Meta:
@@ -24,7 +24,7 @@ class Tag(core.models.AbstractModel):
 
 class Category(core.models.AbstractModel):
     slug = django.db.models.SlugField(
-        verbose_name="слаг", max_length=200, unique=True
+        verbose_name="слаг", max_length=200, unique=True,
     )
     weight = django.db.models.PositiveSmallIntegerField(
         verbose_name="вес",
@@ -78,14 +78,14 @@ class Image(django.db.models.Model):
 
     def get_image_300x300(self):
         return sorl.thumbnail.get_thumbnail(
-            self.image, "300x300", crop="center", quality=51
+            self.image, "300x300", crop="center", quality=51,
         )
 
     def image_tmb(self):
         if self.image:
             thumbnail = self.get_image_300x300()
             return django.utils.safestring.mark_safe(
-                f'<img src="{thumbnail.url}">'
+                f'<img src="{thumbnail.url}">',
             )
 
     image_tmb.short_description = "превью"
@@ -115,7 +115,7 @@ class Item(core.models.AbstractModel):
         help_text="Выберите теги",
         related_name="items",
     )
-    main_image = django.db.models.OneToOneField(
+    mainImage = django.db.models.OneToOneField(
         verbose_name="главное изображение",
         to=Image,
         on_delete=django.db.models.CASCADE,

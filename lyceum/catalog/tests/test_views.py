@@ -2,6 +2,7 @@ import http
 import itertools
 
 import django.test
+import django.urls
 import parameterized.parameterized
 
 __all__ = ["StaticURLTests"]
@@ -9,7 +10,7 @@ __all__ = ["StaticURLTests"]
 
 class StaticURLTests(django.test.TestCase):
     def test_catalog_item_list_code(self):
-        response = self.client.get("/catalog/")
+        response = self.client.get(django.urls.reverse("catalog:item_list"))
         self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
     @parameterized.parameterized.expand(

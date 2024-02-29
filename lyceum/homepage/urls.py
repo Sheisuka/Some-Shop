@@ -6,5 +6,5 @@ app_name = "homepage"
 
 urlpatterns = [
     django.urls.path("", homepage.views.home, name="home"),
-    django.urls.path("coffee/", homepage.views.coffee),
+    django.urls.path("coffee/", homepage.views.coffee, name="coffee"),
 ]
