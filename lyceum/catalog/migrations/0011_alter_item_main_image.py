@@ -9,7 +9,7 @@ __all__ = ["Migration"]
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("catalog", "0010_alter_item_main_image"),
+        ("catalog", "0001_squashed_0010_alter_item_main_image"),
     ]
 
     operations = [
