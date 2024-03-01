@@ -1,6 +1,7 @@
 import django.core.validators
 import django.db.models
 import django.utils.safestring
+import ckeditor_uploader.fields
 import sorl.thumbnail
 
 import catalog.validators
@@ -100,7 +101,7 @@ class Image(django.db.models.Model):
 
 
 class Item(core.models.AbstractModel):
-    text = django.db.models.TextField(
+    text = ckeditor_uploader.fields.RichTextUploadingField(
         verbose_name="текст",
         validators=[
             catalog.validators.ValidateMustContain("роскошно", "превосходно"),
