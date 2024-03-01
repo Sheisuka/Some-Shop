@@ -1,4 +1,4 @@
-import ckeditor_uploader.fields
+import django_ckeditor_5.fields
 import django.core.validators
 import django.db.models
 import django.utils.safestring
@@ -101,7 +101,7 @@ class Image(django.db.models.Model):
 
 
 class Item(core.models.AbstractModel):
-    text = ckeditor_uploader.fields.RichTextUploadingField(
+    text = django_ckeditor_5.fields.CKEditor5Field(
         verbose_name="текст",
         validators=[
             catalog.validators.ValidateMustContain("роскошно", "превосходно"),
