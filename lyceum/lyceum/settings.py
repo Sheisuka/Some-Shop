@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sorl.thumbnail",
+    "ckeditor",
+    "ckeditor_uploader",
     "django_cleanup.apps.CleanupConfig",
 ]
 
