@@ -14,7 +14,13 @@ urlpatterns = [
 urlpatterns += django.conf.urls.static.static(
     django.conf.settings.MEDIA_URL,
     document_root=django.conf.settings.MEDIA_ROOT,
-) + [path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),]
+) + [
+    path(
+        "ckeditor5/",
+        include("django_ckeditor_5.urls"),
+        name="ck_editor_5_upload_file",
+    ),
+]
 
 
 if django.conf.settings.DEBUG:

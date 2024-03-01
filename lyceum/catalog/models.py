@@ -1,7 +1,7 @@
-import django_ckeditor_5.fields
 import django.core.validators
 import django.db.models
 import django.utils.safestring
+import django_ckeditor_5.fields
 import sorl.thumbnail
 
 import catalog.validators
