@@ -1,7 +1,7 @@
+import ckeditor_uploader.fields
 import django.core.validators
 import django.db.models
 import django.utils.safestring
-import ckeditor_uploader.fields
 import sorl.thumbnail
 
 import catalog.validators
