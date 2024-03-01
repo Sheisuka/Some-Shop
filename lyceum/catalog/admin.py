@@ -26,7 +26,7 @@ class ItemAdmin(django.contrib.admin.ModelAdmin):
         "text",
         "category",
         "tags",
-        "main_image",
+        "MainImage",
         "get_main_image",
     )
     readonly_fields = ("get_main_image",)
@@ -34,7 +34,7 @@ class ItemAdmin(django.contrib.admin.ModelAdmin):
     inlines = [ImageInline]
 
     def get_main_image(self, obj):
-        return obj.main_image.image_tmb()
+        return obj.MainImage.image_tmb()
 
     get_main_image.short_description = "превью"
 
