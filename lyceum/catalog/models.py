@@ -132,6 +132,11 @@ class Item(core.models.AbstractModel):
         blank=True,
     )
 
+    is_on_main = django.db.models.BooleanField(
+        verbose_name="Находится на главной", 
+        default=False
+    )
+
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"
