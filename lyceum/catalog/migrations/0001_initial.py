@@ -9,12 +9,6 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [
-        ("catalog", "0001_squashed_0008_alter_image_image"),
-        ("catalog", "0009_alter_image_image"),
-        ("catalog", "0010_alter_item_main_image"),
-    ]
-
     initial = True
 
     dependencies = []
