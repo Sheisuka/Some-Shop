@@ -6,11 +6,14 @@
   <section class="items">
     <div class="container">
       <div class="row">
-        {% include "catalog/includes/product_card.html" %}
-        {% include "catalog/includes/product_card.html" %}
-        {% include "catalog/includes/product_card.html" %}
-        {% include "catalog/includes/product_card.html" %}
-        {% include "catalog/includes/product_card.html" %}
+        {% for category in categories %}
+          {% if category.items.count > 0 %}
+            <h4>{{ category.name }}</h4>
+          {% endif %}
+          {% for item in category.items.all %}
+            {% include "catalog/item_card.html" with item=item %}
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </section>

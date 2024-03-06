@@ -8,26 +8,23 @@
       <div class="row">
         <div class="col-6">
           <div class="main-image">
-            <a href="#"><img src="{% static "img/carousel/1.jpeg" %}"></a>
+            <img src="{{ item.main_image.get_image_300x300.url }}">
           </div>
           <div class="row sub-images">
+            {% for sub_image in item.images.all %}
             <div class="col-3 sub-image">
-              <a href="#"><img src="{% static "img/carousel/1.jpeg" %}"></a>
+              <img src="{{ sub_image.get_image_300x300.url }}">
             </div>
-            <div class="col-3 sub-image">
-              <a href="#"><img src="{% static "img/carousel/1.jpeg" %}"></a>
-            </div>
-            <div class="col-3 sub-image">
-              <a href="#"><img src="{% static "img/carousel/1.jpeg" %}"></a>
-            </div>
-            <div class="col-3 sub-image">
-              <a href="#"><img src="{% static "img/carousel/1.jpeg" %}"></a>
-            </div>
+            {% endfor%}
           </div>
         </div>
         <div class="col-6">
-          <h1>Название товара</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+          <h1>{{ item.name }}</h1>
+          <h2>{{ item.category.name }}</h1>
+          {% for tag in item.tags.all %}
+            {% include "catalog/tag.html" with tag=tag %}
+          {% endfor %}
+          <p>{{ item.text|safe }}</p>
         </div>
       </div>
     </div>
