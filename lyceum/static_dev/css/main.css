@@ -61,7 +61,7 @@ a:hover {
 
 .carousel .carousel-item {
     display: flex;
-    max-height: 600px;
+    max-height: 400px;
 }
 
 .carousel .carousel-item img {
@@ -71,7 +71,7 @@ a:hover {
 
 /* Footer */
 .footer {
-    padding-top: 20px;
+    padding-top: 50px;
 }
 
 .footer h4 {
@@ -98,8 +98,9 @@ a:hover {
 
 /* Product Card */
 .product-card {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     transition: all .3s;
+    border-radius: 20px;
 }
 
 .product-card:hover {
@@ -110,7 +111,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 300px;
     padding: 20px;
 }
 
@@ -120,7 +121,7 @@ a:hover {
 }
 
 .product-details {
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 .product-details h4 a {
@@ -134,7 +135,7 @@ a:hover {
 .product-details p {
     font-size: 15px;
     margin-bottom: 20px;
-    height: 44px;
+    height: 70px;
     overflow: hidden;
 }
 
@@ -155,3 +156,35 @@ a:hover {
 }
 
 /* Product Card */
+
+.main-heading {
+    padding: 70px 0px;
+}
+
+.main-heading h1 {
+    padding-bottom: 10px;
+    border-bottom: #000 solid 1px;
+}
+
+.tag {
+    height: fit-content;
+}
+
+.tag p {
+    overflow: hidden;
+    background-color: #eee;
+    margin: 2px 0;
+    padding: 2px 5px;
+    font-size: 10px;
+    height: fit-content;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.tags {
+    margin-bottom: 10px;
+}
+
+.category p {
+    margin: 0;
+}
