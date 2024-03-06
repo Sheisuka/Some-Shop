@@ -1,5 +1,6 @@
 import django.db
 
+
 __all__ = ["AbstractModel"]
 
 
