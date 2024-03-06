@@ -8,7 +8,7 @@ import django_ckeditor_5.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("catalog", "0004_rename_item_main_image"),
+        ("catalog", "0001_initial"),
     ]
 
     operations = [
