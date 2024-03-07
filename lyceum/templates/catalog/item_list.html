@@ -6,13 +6,8 @@
   <section class="items">
     <div class="container">
       <div class="row">
-        {% for category in categories %}
-          {% if category.items.count > 0 %}
-            <h4>{{ category.name }}</h4>
-          {% endif %}
-          {% for item in category.items.all %}
-            {% include "catalog/item_card.html" with item=item %}
-          {% endfor %}
+        {% for item in items %}
+            {% include "includes/item_card.html" with item=item %}
         {% endfor %}
       </div>
     </div>
