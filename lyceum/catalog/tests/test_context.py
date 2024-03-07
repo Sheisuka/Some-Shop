@@ -64,23 +64,18 @@ class ContextTests(django.test.TestCase):
 
     def test_catalog_item_list_items_count(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
-        categories = response.context["categories"]
-
-        items_count = 0
-        for category in categories:
-            items_count += category.items.count()
+        items = response.context["items"]
 
         # Только опубликованные
         self.assertEqual(
-            items_count,
+            items.count(),
             1,
             "Что-то не то с количеством товаров",
         )
 
     def test_catalog_item_list_tags_count(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
-        category = response.context["categories"][0]
-        item = category.items.all()[0]
+        item = response.context["items"][0]
 
         # Только опубликованные
         self.assertEqual(
@@ -89,21 +84,11 @@ class ContextTests(django.test.TestCase):
             "Что-то не то с количеством тегов",
         )
 
-    def test_catalog_item_list_categories_context(self):
+    def test_catalog_item_list_items_context(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
         # Только опубликованные
         self.assertIn(
-            "categories",
+            "items",
             response.context,
-            "В констексте нет переменной categories",
-        )
-
-    def test_catalog_item_list_categories_count(self):
-        response = self.client.get(django.urls.reverse("catalog:item_list"))
-        categories = response.context["categories"]
-        # Только опубликованные
-        self.assertEqual(
-            categories.count(),
-            1,
-            "Что-то не то с количеством категорий",
+            "В констексте нет переменной items",
         )
