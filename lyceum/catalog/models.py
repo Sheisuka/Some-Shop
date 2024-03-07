@@ -1,3 +1,5 @@
+import uuid
+
 import django.core.validators
 import django.db.models
 import django.utils.safestring
@@ -7,7 +9,11 @@ import sorl.thumbnail
 import catalog.validators
 import core.models
 
-__all__ = ["Category", "Image", "Item", "Tag"]
+__all__ = ["Category", "ImageBaseModel", "Image", "MainImage", "Item", "Tag"]
+
+
+def item_directory_path(instance, filename):
+    return f"catalog/{instance.item.id}/{uuid.uuid4()}-{filename}"
 
 
 class Tag(core.models.AbstractModel):
@@ -57,26 +63,16 @@ class Category(core.models.AbstractModel):
         return self.name
 
 
-class Image(django.db.models.Model):
+class ImageBaseModel(django.db.models.Model):
     image = django.db.models.ImageField(
         verbose_name="изображение",
-        upload_to="catalog/",
-    )
-    item = django.db.models.ForeignKey(
-        verbose_name="товар",
-        to="Item",
-        on_delete=django.db.models.CASCADE,
-        related_name="images",
+        upload_to=item_directory_path,
+        default=None,
         null=True,
-        blank=True,
     )
 
     class Meta:
-        verbose_name = "изображение"
-        verbose_name_plural = "изображения"
-
-    def __str__(self):
-        return self.image.url
+        abstract = True
 
     def get_image_x1280(self):
         return sorl.thumbnail.get_thumbnail(self.image, "1280", quality=51)
@@ -89,15 +85,51 @@ class Image(django.db.models.Model):
             quality=51,
         )
 
-    def image_tmb(self):
-        if self.image:
-            thumbnail = self.get_image_300x300()
-            return django.utils.safestring.mark_safe(
-                f'<img src="{thumbnail.url}">',
-            )
+    @property
+    def get_image_50x50(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image, "50x50", crop="center", quality=51,
+        )
 
-    image_tmb.short_description = "превью"
-    image_tmb.allow_tags = True
+
+class MainImage(ImageBaseModel):
+    item = django.db.models.OneToOneField(
+        verbose_name="Главное изображение",
+        to="Item",
+        on_delete=django.db.models.CASCADE,
+        related_name="main_image",
+        default=None,
+        null=True,
+    )
+
+    def __str__(self):
+        if self.item:
+            return self.item.name
+        return "---"
+
+    class Meta:
+        verbose_name = "главное изображение"
+        verbose_name_plural = "главные изображения"
+
+
+class Image(ImageBaseModel):
+    item = django.db.models.ForeignKey(
+        verbose_name="товар",
+        to="Item",
+        on_delete=django.db.models.CASCADE,
+        related_name="images",
+        default=None,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = "изображение"
+        verbose_name_plural = "изображения"
+
+    def __str__(self):
+        if self.item:
+            return self.item.name
+        return "---"
 
 
 class Item(core.models.AbstractModel):
@@ -123,18 +155,10 @@ class Item(core.models.AbstractModel):
         help_text="Выберите теги",
         related_name="items",
     )
-    MainImage = django.db.models.OneToOneField(
-        verbose_name="главное изображение",
-        to=Image,
-        on_delete=django.db.models.CASCADE,
-        related_name="item_main",
-        null=True,
-        blank=True,
-    )
 
     is_on_main = django.db.models.BooleanField(
-        verbose_name="Находится на главной", 
-        default=False
+        verbose_name="находится на главной",
+        default=False,
     )
 
     class Meta:
@@ -143,3 +167,13 @@ class Item(core.models.AbstractModel):
 
     def __str__(self):
         return self.name[:15]
+
+    def image_tmb(self):
+        if self.main_image.image:
+            return django.utils.safestring.mark_safe(
+                f"<img src='{self.main_image.get_image_50x50.url}'>",
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = "превью"
+    image_tmb.allow_tags = True
