@@ -22,7 +22,9 @@ def home(request):
             ),
         )
         .filter(
-            is_published=True, is_on_main=True, category__is_published=True,
+            is_published=True,
+            is_on_main=True,
+            category__is_published=True,
         )
         .only(
             "pk",
