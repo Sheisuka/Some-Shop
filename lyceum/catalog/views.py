@@ -20,7 +20,7 @@ def item_list(request):
                 ).only("name"),
             ),
         )
-        .filter(is_published=True)
+        .filter(is_published=True, category__is_published=True)
         .only(
             "pk",
             "name",
