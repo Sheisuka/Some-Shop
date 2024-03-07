@@ -10,35 +10,28 @@ __all__ = ["item_detail", "item_list"]
 def item_list(request):
     template = "catalog/item_list.html"
 
-    categories = (
-        catalog.models.Category.objects.filter(
-            is_published=True,
+    items = (
+        catalog.models.Item.objects.select_related("category", "main_image")
+        .prefetch_related(
+            django.db.models.Prefetch(
+                "tags",
+                queryset=catalog.models.Tag.objects.filter(
+                    is_published=True,
+                ).only("name"),
+            ),
         )
-        .only("name")
-        .order_by("name")
+        .filter(is_published=True)
+        .only(
+            "pk",
+            "name",
+            "text",
+            "category__name",
+            "tags",
+            "main_image__image",
+        )
+        .order_by("category__name")
     )
-
-    item_query = catalog.models.Item.objects.filter(is_published=True).only(
-        "name",
-        "text",
-        "tags",
-        "main_image",
-        "category",
-    )
-    tag_query = catalog.models.Tag.objects.filter(is_published=True).only(
-        "name",
-    )
-
-    categories = categories.prefetch_related(
-        django.db.models.Prefetch("items", queryset=item_query),
-        django.db.models.Prefetch("items__tags", queryset=tag_query),
-        "items__main_image",
-    )
-    return django.shortcuts.render(
-        request,
-        template,
-        {"categories": categories},
-    )
+    return django.shortcuts.render(request, template, {"items": items})
 
 
 def item_detail(request, pk):
