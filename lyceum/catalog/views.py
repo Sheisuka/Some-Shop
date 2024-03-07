@@ -42,8 +42,7 @@ def item_detail(request, pk):
     )
     images_query = catalog.models.Image.objects.only("id", "image", "item_id")
     items_query = (
-        catalog.models.Item.objects.filter(is_published=True)
-        .select_related("category", "main_image")
+        catalog.models.Item.objects.select_related("category", "main_image")
         .prefetch_related(
             django.db.models.Prefetch(
                 "tags",
@@ -56,6 +55,7 @@ def item_detail(request, pk):
                 queryset=images_query,
             ),
         )
+        .filter(is_published=True, category__is_published=True)
         .only("name", "text", "category__name", "main_image__image")
     )
 

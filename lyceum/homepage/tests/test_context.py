@@ -79,9 +79,8 @@ class ContextTests(django.test.TestCase):
 
     def test_homepage_home_items_count(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        items = response.context["items"]
         # Только опубликованные
-        self.assertEqual(items.count(), 1)
+        self.assertEqual(len(response.context["items"]), 1)
 
     def test_catalog_item_list_tags_count(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
