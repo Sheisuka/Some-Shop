@@ -10,12 +10,20 @@ __all__ = ["item_detail", "item_list"]
 def item_list(request):
     template = "catalog/item_list.html"
 
-    categories = catalog.models.Category.objects.filter(
-        is_published=True,
-    ).only("name").order_by("name")
+    categories = (
+        catalog.models.Category.objects.filter(
+            is_published=True,
+        )
+        .only("name")
+        .order_by("name")
+    )
 
     item_query = catalog.models.Item.objects.filter(is_published=True).only(
-        "name", "text", "tags", "main_image", "category",
+        "name",
+        "text",
+        "tags",
+        "main_image",
+        "category",
     )
     tag_query = catalog.models.Tag.objects.filter(is_published=True).only(
         "name",
