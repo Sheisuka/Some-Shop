@@ -151,6 +151,7 @@ class Item(core.models.AbstractModel):
         default=Category.get_default_pk,
         help_text="Выберите категорию",
         related_name="items",
+        related_query_name="item",
     )
     tags = django.db.models.ManyToManyField(
         verbose_name="теги",

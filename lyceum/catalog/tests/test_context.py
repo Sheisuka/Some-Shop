@@ -70,7 +70,6 @@ class ContextTests(django.test.TestCase):
         self.assertEqual(
             items.count(),
             1,
-            "Что-то не то с количеством товаров",
         )
 
     def test_catalog_item_list_tags_count(self):
@@ -81,7 +80,6 @@ class ContextTests(django.test.TestCase):
         self.assertEqual(
             item.tags.count(),
             1,
-            "Что-то не то с количеством тегов",
         )
 
     def test_catalog_item_list_items_context(self):
@@ -90,5 +88,10 @@ class ContextTests(django.test.TestCase):
         self.assertIn(
             "items",
             response.context,
-            "В констексте нет переменной items",
         )
+
+    def test_catalog_item_list_items_type(self):
+        response = self.client.get(django.urls.reverse("catalog:item_list"))
+        items = response.context["items"]
+        for item in items:
+            self.assertIs(type(item), catalog.models.Item)
