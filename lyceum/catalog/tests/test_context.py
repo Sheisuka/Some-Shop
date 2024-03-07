@@ -67,31 +67,22 @@ class ContextTests(django.test.TestCase):
         items = response.context["items"]
 
         # Только опубликованные
-        self.assertEqual(
-            items.count(),
-            1,
-        )
+        self.assertEqual(items.count(), 1)
 
     def test_catalog_item_list_tags_count(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
         item = response.context["items"][0]
 
         # Только опубликованные
-        self.assertEqual(
-            item.tags.count(),
-            1,
-        )
+        self.assertEqual(item.tags.count(), 1)
 
     def test_catalog_item_list_items_context(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
         # Только опубликованные
-        self.assertIn(
-            "items",
-            response.context,
-        )
+        self.assertIn("items", response.context)
 
     def test_catalog_item_list_items_type(self):
         response = self.client.get(django.urls.reverse("catalog:item_list"))
         items = response.context["items"]
         for item in items:
-            self.assertIs(type(item), catalog.models.Item)
+            self.assertIsInstance(item, catalog.models.Item)

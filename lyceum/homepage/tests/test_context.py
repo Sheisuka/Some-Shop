@@ -75,29 +75,17 @@ class ContextTests(django.test.TestCase):
 
     def test_homepage_home_items_context(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        self.assertIn(
-            "items",
-            response.context,
-            "В контексте нет переменной items",
-        )
+        self.assertIn("items", response.context)
 
     def test_homepage_home_items_count(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
         items = response.context["items"]
         # Только опубликованные
-        self.assertEqual(
-            items.count(),
-            1,
-            "Что-то не то с количеством товаров",
-        )
+        self.assertEqual(items.count(), 1)
 
     def test_catalog_item_list_tags_count(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
         item = response.context["items"][0]
 
         # Только опубликованные
-        self.assertEqual(
-            item.tags.count(),
-            1,
-            "Что-то не то с количеством тегов",
-        )
+        self.assertEqual(item.tags.count(), 1)
