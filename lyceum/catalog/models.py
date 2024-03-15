@@ -10,7 +10,7 @@ import sorl.thumbnail
 import catalog.validators
 import core.models
 
-__all__ = ["Category", "ImageBaseModel", "Image", "MainImage", "Item", "Tag"]
+__all__ = ["Category", "Image", "MainImage", "Item", "Tag"]
 
 
 def item_directory_path(instance, filename):
@@ -20,7 +20,9 @@ def item_directory_path(instance, filename):
 class ContentManager(django.db.models.Manager):
     def on_main(self):
         main_items = (
-            catalog.models.Item.objects.select_related("category", "main_image")
+            catalog.models.Item.objects.select_related(
+                "category", "main_image",
+            )
             .prefetch_related(
                 django.db.models.Prefetch(
                     "tags",
@@ -44,12 +46,14 @@ class ContentManager(django.db.models.Manager):
             )
             .order_by("name")
         )
-        
+
         return main_items
-    
+
     def published(self):
         published_items = (
-            catalog.models.Item.objects.select_related("category", "main_image")
+            catalog.models.Item.objects.select_related(
+                "category", "main_image",
+            )
             .prefetch_related(
                 django.db.models.Prefetch(
                     "tags",
@@ -67,18 +71,22 @@ class ContentManager(django.db.models.Manager):
                 "tags",
                 "main_image__image",
             )
-        .order_by("category__name")
+            .order_by("category__name")
         )
-        
+
         return published_items
 
     def get_item(self, pk):
         tags_query = catalog.models.Tag.objects.filter(is_published=True).only(
-        "name",
+            "name",
         )
-        images_query = catalog.models.Image.objects.only("id", "image", "item_id")
+        images_query = catalog.models.Image.objects.only(
+            "id", "image", "item_id",
+        )
         items_query = (
-            catalog.models.Item.objects.select_related("category", "main_image")
+            catalog.models.Item.objects.select_related(
+                "category", "main_image",
+            )
             .prefetch_related(
                 django.db.models.Prefetch(
                     "tags",
@@ -99,7 +107,7 @@ class ContentManager(django.db.models.Manager):
             items_query,
             pk=pk,
         )
-    
+
         return item
 
 
