@@ -21,7 +21,8 @@ class ContentManager(django.db.models.Manager):
     def on_main(self):
         main_items = (
             catalog.models.Item.objects.select_related(
-                "category", "main_image",
+                "category",
+                "main_image",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -52,7 +53,8 @@ class ContentManager(django.db.models.Manager):
     def published(self):
         published_items = (
             catalog.models.Item.objects.select_related(
-                "category", "main_image",
+                "category",
+                "main_image",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -81,11 +83,14 @@ class ContentManager(django.db.models.Manager):
             "name",
         )
         images_query = catalog.models.Image.objects.only(
-            "id", "image", "item_id",
+            "id",
+            "image",
+            "item_id",
         )
         items_query = (
             catalog.models.Item.objects.select_related(
-                "category", "main_image",
+                "category",
+                "main_image",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
