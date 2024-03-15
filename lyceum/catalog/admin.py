@@ -2,7 +2,7 @@ import django.contrib
 
 import catalog.models
 
-__all__ = ["MainImageInline", "ImageInline", "ItemAdmin"]
+__all__ = []
 
 
 django.contrib.admin.site.register(catalog.models.Category)

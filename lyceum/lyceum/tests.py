@@ -1,7 +1,7 @@
 import django.test
 import django.urls
 
-__all__ = ["RussianReverseMiddlewareTests"]
+__all__ = []
 
 
 class RussianReverseMiddlewareTests(django.test.TestCase):

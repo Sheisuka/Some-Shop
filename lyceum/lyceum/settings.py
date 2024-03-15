@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-__all__ = ["get_bool_from_env"]
+__all__ = []
 
 
 def get_bool_from_env(key, default="y"):

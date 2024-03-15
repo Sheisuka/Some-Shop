@@ -1,7 +1,7 @@
 import django.test
 import django.urls
 
-__all__ = ["StaticURLTests"]
+__all__ = []
 
 
 class StaticURLTests(django.test.TestCase):
