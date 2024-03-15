@@ -7,7 +7,10 @@
     <div class="container">
       <div class="row">
         {% for item in items %}
-            {% include "includes/item_card.html" with item=item %}
+          {% ifchanged item.category.name %}
+            <h3>{{ item.category.name }}</h3>
+          {% endifchanged %}
+          {% include "includes/item_card.html" with item=item %}
         {% endfor %}
       </div>
     </div>
