@@ -1,21 +1,21 @@
 {% load static %}
 
 <div class="col-lg-4 col-sm-6 mb-3">
-    <div class="product-card">
-      <div class="product-thumb">
-        <a href="{% url "catalog:item_detail" item.pk %}"><img src="{{ item.main_image.image.url }}"></a>
+  <div class="product-card">
+    <div class="product-thumb">
+      <a href="{% url "catalog:item_detail" item.pk %}"><img src="{{ item.main_image.image.url }}"></a>
+    </div>
+    <div class="product-details">
+      <div class="category">
+        <p><small>{{ item.category.name }}</small></p>
       </div>
-      <div class="product-details">
-        <div class="category">
-          <p><small>{{ item.category.name }}</small></p>
-        </div>
-        <div class="tags gx-2 row">
-          {% for tag in item.tags.all %}
-            {% include "catalog/tag.html" with tag=tag %}
-          {% endfor %}
-        </div>
-        <h4><a href="{% url "catalog:item_detail" item.pk %}">{{ item.name }}</a></h4>
-        {{ item.text|safe|truncatewords_html:10 }}
+      <div class="tags gx-2 row">
+        {% for tag in item.tags.all %}
+          {% include "catalog/tag.html" with tag=tag %}
+        {% endfor %}
       </div>
+      <h4><a href="{% url "catalog:item_detail" item.pk %}">{{ item.name }}</a></h4>
+      {{ item.text|safe|truncatewords_html:10 }}
     </div>
   </div>
+</div>
