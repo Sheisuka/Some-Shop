@@ -1,6 +1,6 @@
 [![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/students/67134-xxtornexx2016-course-1112/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/students/67134-xxtornexx2016-course-1112/-/commits/main)
 
-# Yandex.Lyceum Django course
+# Some shop
 
 Online-store-like website  
 Description to be completed
