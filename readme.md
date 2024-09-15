@@ -34,12 +34,7 @@ If you want to deploy the app you should follow these steps
 
 You can clone via https:  
 ```bash
-git clone https://gitlab.crja72.ru/django/2024/spring/course/students/67134-xxtornexx2016-course-1112.git Dir_name
-```  
-
-Or you can clone via ssh:  
-```bash
-git clone git@gitlab.crja72.ru:django/2024/spring/course/students/67134-xxtornexx2016-course-1112.git Dir_name
+git clone https://github.com/Sheisuka/Some-Shop.git Dir_name
 ```  
 
 "Dir_name" is a custom name for dir which will contain code of the repo  
